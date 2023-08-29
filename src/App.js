@@ -13,9 +13,6 @@ function App() {
           <p>
             To-DO List
           </p>
-            <button className='button-add-tasks'>Add New Task
-            <img src={plus} className="plus-solid" alt="plus-solid" />
-            </button>
             <Example />
           <div className='toDoListCard'>
             <p>

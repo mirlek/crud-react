@@ -2,6 +2,10 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+library.add(fas)
 
 function Example() {
   const [show, setShow] = useState(false);
@@ -11,8 +15,9 @@ function Example() {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="primary" onClick={handleShow} className='button-add-tasks'>
         Launch demo modal
+        <FontAwesomeIcon icon="fa-solid fa-plus" className="plus-solid" />
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -21,7 +26,7 @@ function Example() {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3" controlId="example.ControlInput1">
               <Form.Label>Email address</Form.Label>
               <Form.Control
                 type="email"
@@ -31,7 +36,7 @@ function Example() {
             </Form.Group>
             <Form.Group
               className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
+              controlId="example.ControlTextarea1"
             >
               <Form.Label>Example textarea</Form.Label>
               <Form.Control as="textarea" rows={3} />
