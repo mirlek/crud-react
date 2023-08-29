@@ -1,4 +1,3 @@
-import plus from './style/plus-solid.svg';
 import './style/App.css';
 
 import edit from './style/pen-solid.svg';
@@ -13,7 +12,7 @@ function App() {
           <p>
             To-DO List
           </p>
-            <Example />
+          <Example />
           <div className='toDoListCard'>
             <p>
               hello!
