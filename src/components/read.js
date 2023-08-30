@@ -1,0 +1,37 @@
+// import React from 'react';
+// import edit from './style/pen-solid.svg';
+// import trash from './style/trash-solid.svg';
+
+// export default function Read() {
+//     return (
+//           <div className='todo-menu'>
+//             <p>
+//               To-DO List
+//             </p>
+//             <div className='toDoListCard'>
+//               <p>
+//                 hello!
+//               </p>
+//               <div className='change-buttons'>
+//                 <button className='button-edit'>
+//                     <img src={edit} className="pen-solid" alt="pen-solid" />
+//                 </button>
+//                 <button className='button-delete'>        
+//                     <img src={trash} className="trash-solid" alt="trash-solid" />
+//                 </button>
+//               </div>
+//             </div>
+            
+//           </div>
+          
+//         //   {/* <a
+//         //     className="App-link"
+//         //     href="https://reactjs.org"
+//         //     target="_blank"
+//         //     rel="noopener noreferrer"
+//         //   >
+//         //     Learn React
+//         //   </a> */}
+          
+//     )
+// }

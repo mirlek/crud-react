@@ -1,44 +1,47 @@
+import { useState } from 'react';
+import Create from './components/create';
+import Read from './components/read';
+import Update from './components/update';
 import './style/App.css';
-
-import edit from './style/pen-solid.svg';
-import trash from './style/trash-solid.svg';
-import Example from './toDoStuff/toDoModal.js';
+import { Button } from "react-bootstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
 function App() {
+  const [setShow] = useState(false);
+  const handleShow = () => setShow(true);
+
   return (
-    <div className="App">
+    <Router>
+      <div className="App">
         <div className='todo-menu'>
-          <p>
-            To-DO List
-          </p>
-          <Example />
-          <div className='toDoListCard'>
             <p>
-              hello!
+              To-DO List
             </p>
-            <div className='change-buttons'>
-              <button className='button-edit'>
-                  <img src={edit} className="pen-solid" alt="pen-solid" />
-              </button>
-              <button className='button-delete'>        
-                  <img src={trash} className="trash-solid" alt="trash-solid" />
-              </button>
-            </div>
+            <Button className="button-add-tasks" onClick={handleShow} >
+      Add New Task
+        <FontAwesomeIcon icon="fa-solid fa-plus" className="plus-solid" />
+      </Button>
+            <Routes>
+            <Route path='modal' component={<Create />} />
+            <Route exact path='/read' component={<Read />} />
+            <Route exact path='/update' component={<Update />} />
+            </Routes>
+            
           </div>
           
-        </div>
-        
-        {/* <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a> */}
-        
-    </div>
+          {/* <a
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn React
+          </a> */}
+          
+      </div>
+    </Router>
   );
 }
 
