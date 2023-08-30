@@ -1,0 +1,59 @@
+.App {
+  background-color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: black;
+  
+}
+
+.todo-menu{
+  padding: 32px;
+  border: 2px solid black;
+  height: fit-content;
+  width: 300px;
+}
+
+.button-add-tasks{
+  display: flex !important;
+  width: 100%;
+  align-items: center !important;
+  justify-content: space-between !important;
+  background-color: grey !important;
+  border: 1px solid grey !important;
+}
+.plus-solid, .pen-solid, .trash-solid {
+  height: 24px;
+  width: 24px;
+}
+
+.toDoListCard{
+  margin: 24px 0px 24px 0px;
+  border: 2px solid black;
+  padding: 32px;
+}
+.toDoListCard p {
+  width: 100%;
+}
+
+.change-buttons{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+/* @keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
+
+#calendar{
+  margin-right: 24px;
+}
