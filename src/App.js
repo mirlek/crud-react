@@ -1,44 +1,37 @@
+import Create from './components/create';
+import Read from './components/read';
+import Update from './components/update';
+import AddTaskButton from './components/addTaskButton';
 import './style/App.css';
-
-import edit from './style/pen-solid.svg';
-import trash from './style/trash-solid.svg';
-import Example from './toDoStuff/toDoModal.js';
+import { Route, Routes, useLocation} from 'react-router-dom';
 
 
 function App() {
+  const location = useLocation();
+  const background = location.state && location.state.background;
+
   return (
-    <div className="App">
+      <div className="App">
         <div className='todo-menu'>
-          <p>
-            To-DO List
-          </p>
-          <Example />
-          <div className='toDoListCard'>
             <p>
-              hello!
+              To-DO List
             </p>
-            <div className='change-buttons'>
-              <button className='button-edit'>
-                  <img src={edit} className="pen-solid" alt="pen-solid" />
-              </button>
-              <button className='button-delete'>        
-                  <img src={trash} className="trash-solid" alt="trash-solid" />
-              </button>
-            </div>
+            
+            <Routes location={background || location}>
+            <Route path="/" element={<AddTaskButton />}>
+          <Route path="modal" element={<Create />} />
+        </Route>
+            <Route exact path='/read' component={<Read />} />
+            <Route exact path='/update' component={<Update />} />
+            </Routes>
+            {background && (
+        <Routes>
+          <Route path="modal" element={<Create />} />
+        </Routes>
+      )}
           </div>
           
-        </div>
-        
-        {/* <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a> */}
-        
-    </div>
+      </div>
   );
 }
 

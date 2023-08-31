@@ -13,8 +13,10 @@
 .todo-menu{
   padding: 32px;
   border: 2px solid black;
-  height: fit-content;
+  min-height: 550px;
   width: 300px;
+  max-height: fit-content;
+
 }
 
 .button-add-tasks{
