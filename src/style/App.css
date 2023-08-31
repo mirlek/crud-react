@@ -31,15 +31,19 @@
   height: 24px;
   width: 24px;
 }
+.card{
+  border: 0px;
+}
+.card-body{
+  padding: 0px;
+}
 
 .toDoListCard{
   margin: 24px 0px 24px 0px;
   border: 2px solid black;
   padding: 32px;
 }
-.toDoListCard p {
-  width: 100%;
-}
+
 
 .change-buttons{
   display: flex;
