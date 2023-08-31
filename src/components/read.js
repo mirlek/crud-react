@@ -1,36 +1,69 @@
-// import React from 'react';
-// import edit from './style/pen-solid.svg';
-// import trash from './style/trash-solid.svg';
-// import { Card, Button } from "react-bootstrap";
-// import "bootstrap/dist/css/bootstrap.css";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { library } from '@fortawesome/fontawesome-svg-core';
-// import { fas } from '@fortawesome/free-solid-svg-icons';
-// library.add(fas);
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Card,  Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+library.add(fas);
 
-export default function Read() {
-//     return (
-//           
+function Read() {
+
+    const [APIData, setAPIData] = useState([]);
+    useEffect(() => {
+        axios.get(`https://64ef1ed7219b3e2873c3f9ad.mockapi.io/todoData`)
+            .then((response) => {
+                setAPIData(response.data);
+            })
+    }, [])
+
+    return (
+          
 //             <div className='toDoListCard'>
 //               <p>
 //                 hello!
 //               </p>
 //               <div className='change-buttons'>
-//                 <button className='button-edit'>
-                    // <FontAwesomeIcon icon="fa-solid fa-pen" className="pen-solid" />
-//                     <img src={edit} className="pen-solid" alt="pen-solid" />
-//                 </button>
-//                 <button className='button-delete'>    
-//  <FontAwesomeIcon icon="fa-solid fa-trash" className="trash-solid" alt="trash-solid" />     
+//                 <Button className='button-edit'>
+//                     <FontAwesomeIcon icon="fa-solid fa-pen" className="pen-solid" />
     
-//                     <img src={trash} className="trash-solid" alt="trash-solid" />
-//                 </button>
+//                 </Button>
+//                 <Button className='button-delete'>    
+//  <FontAwesomeIcon icon="fa-solid fa-trash" className="trash-solid" />     
+    
+//                 </Button>
 //               </div>
 //             </div>
-          
-//     )
 
+<div className='cardsStock'>
+    <Card>
+        <Card.Body>
+        {APIData.map((data) => {
+     return (
+        <div className='toDoListCard'>
+            <Card.Title>{data.addNewTaskTitle}</Card.Title>
+            <Card.Text>{data.taskDescription}</Card.Text>
+            <div className='change-buttons'>
+            <Button variant="primary" className='button-edit'>
+                <FontAwesomeIcon icon="fa-solid fa-pen" className="pen-solid" />
+            </Button>
+            
+            <Button variant="primary" className='button-delete'>
+                <FontAwesomeIcon icon="fa-solid fa-trash" className="trash-solid" alt="trash-solid" />   
+            </Button>
+            </div>
+        </div>
+   )})}
+            
+        </Card.Body>
+    </Card>
+</div>
+            
+          
+    )
+    
     // <Card style={{ width: '18rem' }}>
+    // <Card>
     //   <Card.Body>
     //     <Card.Title>Card Title</Card.Title>
     //     <Card.Text>
@@ -39,7 +72,7 @@ export default function Read() {
     //     </Card.Text>
         
     //     <Button variant="primary">
-                        // <FontAwesomeIcon icon="fa-solid fa-pen" className="pen-solid" />
+    //                     <FontAwesomeIcon icon="fa-solid fa-pen" className="pen-solid" />
 
     // </Button>
         
@@ -50,3 +83,5 @@ export default function Read() {
     //   </Card.Body>
     // </Card>
 }
+
+export default Read;

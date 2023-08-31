@@ -21,8 +21,8 @@ function App() {
             <Route path="/" element={<AddTaskButton />}>
           <Route path="modal" element={<Create />} />
         </Route>
-            <Route exact path='/read' component={<Read />} />
-            <Route exact path='/update' component={<Update />} />
+            <Route path='/read' element={<Read />} />
+            <Route path='/update' element={<Update />} />
             </Routes>
             {background && (
         <Routes>

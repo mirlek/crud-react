@@ -5,10 +5,7 @@ import { Modal, Button, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-library.add(fas);
+
 
 
 
@@ -21,13 +18,13 @@ function Create() {
 //   const handleClose = () => setShow(false);
 //   const handleShow = () => setShow(true);
 
-  const [addNewTask, setaddNewTask] = useState('');
+  const [addNewTaskTitle, setaddNewTaskTitle] = useState('');
   // const [taskdatePicker, settaskdatePicker] = useState('');
   const [taskDescription, settaskDescription] = useState('');
 
   const postData = () => {
     axios.post(`https://64ef1ed7219b3e2873c3f9ad.mockapi.io/todoData`, {
-            addNewTask,
+            addNewTaskTitle,
             taskDescription,
         })
 }
@@ -38,8 +35,8 @@ function Create() {
   return (
     <>
       
-
-      {/* <Modal show={show} onHide={() => navigate(-1)} animation={false}> */}
+<div>
+      {/* <Modal show={show} onHide={() => navigate(-1)} > */}
         <Modal.Header closeButton>
           <Modal.Title>Add New Task</Modal.Title>
         </Modal.Header>
@@ -54,7 +51,7 @@ function Create() {
                 type="text"
                 placeholder="Add what's important to do"
                 autoFocus
-                onChange={(e) => setaddNewTask(e.target.value)}
+                onChange={(e) => setaddNewTaskTitle(e.target.value)}
               />
             </Form.Group>
             <Form.Group
@@ -82,6 +79,7 @@ function Create() {
           </Button>
         </Modal.Footer>
       {/* </Modal> */}
+      </div>
     </>
   );
 }
