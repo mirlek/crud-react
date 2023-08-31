@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { React, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { Modal, Button, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 library.add(fas);
@@ -13,11 +14,12 @@ library.add(fas);
 
 
 function Create() {   
+    const navigate = useNavigate();
 
-  const [show, setShow] = useState(false);
+//   const [show] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+//   const handleClose = () => setShow(false);
+//   const handleShow = () => setShow(true);
 
   const [addNewTask, setaddNewTask] = useState('');
   // const [taskdatePicker, settaskdatePicker] = useState('');
@@ -35,12 +37,9 @@ function Create() {
 
   return (
     <>
-      <Button className="button-add-tasks" onClick={handleShow} >
-      Add New Task
-        <FontAwesomeIcon icon="fa-solid fa-plus" className="plus-solid" />
-      </Button>
+      
 
-      <Modal show={show} onHide={handleClose}>
+      {/* <Modal show={show} onHide={() => navigate(-1)} animation={false}> */}
         <Modal.Header closeButton>
           <Modal.Title>Add New Task</Modal.Title>
         </Modal.Header>
@@ -75,14 +74,14 @@ function Create() {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={() => navigate(-1)}>
             Close
           </Button>
           <Button variant="primary" onClick={postData}>
             Save Changes
           </Button>
         </Modal.Footer>
-      </Modal>
+      {/* </Modal> */}
     </>
   );
 }
