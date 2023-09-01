@@ -1,6 +1,5 @@
 .App {
   background-color: white;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +15,7 @@
   min-height: 550px;
   width: 300px;
   max-height: fit-content;
-
+  margin-top: 100px;
 }
 
 .button-add-tasks{
