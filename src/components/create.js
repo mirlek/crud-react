@@ -7,33 +7,32 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 
-
-
-
 function Create() {   
     const navigate = useNavigate();
 
-  const [show] = useState(true);
+    const [show] = useState(true);
 
 
-  const [addNewTaskTitle, setaddNewTaskTitle] = useState('');
-  // const [taskdatePicker, settaskdatePicker] = useState('');
-  const [taskDescription, settaskDescription] = useState('');
+    const [addNewTaskTitle, setaddNewTaskTitle] = useState('');
+    // const [taskdatePicker, settaskdatePicker] = useState('');
+    const [taskDescription, settaskDescription] = useState('');
 
-  const postData = () => {
-    axios.post(`https://64ef1ed7219b3e2873c3f9ad.mockapi.io/todoData`, {
-            addNewTaskTitle,
-            taskDescription,
-        })
-}
+    
 
-  const [startDate, setStartDate] = useState(new Date());
+    const postData = () => {
+        axios.post(`https://64ef1ed7219b3e2873c3f9ad.mockapi.io/todoData`, {
+                addNewTaskTitle,
+                taskDescription,
+            }).then(() => {
+                navigate('/read')
+            })
+    }
+
+    const [startDate, setStartDate] = useState(new Date());
   
-
-  return (
-    <>
-      
-<div>
+return (
+    <>  
+    <div>
       <Modal show={show} onHide={() => navigate(-1)} >
         <Modal.Header closeButton>
           <Modal.Title>Add New Task</Modal.Title>
@@ -77,7 +76,7 @@ function Create() {
           </Button>
         </Modal.Footer>
       </Modal>
-      </div>
+    </div>
     </>
   );
 }

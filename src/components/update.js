@@ -1,52 +1,95 @@
-// import React from 'react';
-// import edit from './style/pen-solid.svg';
-// import trash from './style/trash-solid.svg';
-// import { Card, Button } from "react-bootstrap";
-// import "bootstrap/dist/css/bootstrap.css";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { library } from '@fortawesome/fontawesome-svg-core';
-// import { fas } from '@fortawesome/free-solid-svg-icons';
-// library.add(fas);
+import { React, useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+import { Modal, Button, Form } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-export default function Update() {
-    //     return (
-    //           
-    //             <div className='toDoListCard'>
-    //               <p>
-    //                 hello!
-    //               </p>
-    //               <div className='change-buttons'>
-    //                 <button className='button-edit'>
-                        // <FontAwesomeIcon icon="fa-solid fa-pen" className="pen-solid" />
-    //                     <img src={edit} className="pen-solid" alt="pen-solid" />
-    //                 </button>
-    //                 <button className='button-delete'>    
-    //  <FontAwesomeIcon icon="fa-solid fa-trash" className="trash-solid" alt="trash-solid" />     
-        
-    //                     <img src={trash} className="trash-solid" alt="trash-solid" />
-    //                 </button>
-    //               </div>
-    //             </div>
-              
-    //     )
-    
-        // <Card style={{ width: '18rem' }}>
-        //   <Card.Body>
-        //     <Card.Title>Card Title</Card.Title>
-        //     <Card.Text>
-        //       Some quick example text to build on the card title and make up the
-        //       bulk of the card's content.
-        //     </Card.Text>
-            
-        //     <Button variant="primary">
-                            // <FontAwesomeIcon icon="fa-solid fa-pen" className="pen-solid" />
-    
-        // </Button>
-            
-        //     <Button variant="primary">
-        // <FontAwesomeIcon icon="fa-solid fa-trash" className="trash-solid" alt="trash-solid" />   
-        // </Button>
-    
-        //   </Card.Body>
-        // </Card>
+
+function Update() {   
+    const navigate = useNavigate();
+
+    const [show] = useState(true);
+
+    const [addNewTaskTitle, setaddNewTaskTitle] = useState('');
+    // const [taskdatePicker, settaskdatePicker] = useState('');
+    const [taskDescription, settaskDescription] = useState('');
+
+    const updateAPIData = () => {
+        axios.put(`https://64ef1ed7219b3e2873c3f9ad.mockapi.io/todoData/${id}`, {
+                addNewTaskTitle,
+                taskDescription,
+        }).then(() => {
+            navigate('/read')
+        })
     }
+
+    const [startDate, setStartDate] = useState(new Date());
+
+    const [id, setID] = useState(null);
+
+    useEffect(() => {
+        setID(localStorage.getItem('ID'))
+        setaddNewTaskTitle(localStorage.getItem('Your task'));
+        settaskDescription(localStorage.getItem('To-Do'));
+}, []);
+  
+return (
+    <>  
+    <div>
+      <Modal show={show} onHide={() => navigate(-1)} >
+        <Modal.Header closeButton>
+          <Modal.Title>Add New Task</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group 
+              className="mb-3" 
+              controlId="example.ControlInput1"
+              >
+              <Form.Label>Task Title</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder='Your task'
+                autoFocus
+                onChange={(e) => setaddNewTaskTitle(e.target.value)}
+                value={addNewTaskTitle}
+              />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="example.ControlDatePicker1"
+            >
+              <Form.Label id='calendar'>Due date</Form.Label>
+              <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="example.ControlTextarea1"
+            >
+              <Form.Label>Description</Form.Label>
+              <Form.Control 
+                as="textarea" 
+                rows={3} 
+                onChange={(e) => settaskDescription(e.target.value)}
+                value={taskDescription}
+                placeholder='To-Do'/>
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => navigate(-1)}>
+            Close
+          </Button>
+          <Button variant="primary" type='submit' onClick={updateAPIData}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+    </>
+  );
+}
+
+export default Update;
