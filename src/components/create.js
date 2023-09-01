@@ -12,24 +12,20 @@ function Create() {
 
     const [show] = useState(true);
 
-
     const [addNewTaskTitle, setaddNewTaskTitle] = useState('');
-    // const [taskdatePicker, settaskdatePicker] = useState('');
     const [taskDescription, settaskDescription] = useState('');
-
+    const [dueDate, setdueDate] = useState(new Date());
     
-
     const postData = () => {
         axios.post(`https://64ef1ed7219b3e2873c3f9ad.mockapi.io/todoData`, {
                 addNewTaskTitle,
                 taskDescription,
+                dueDate
             }).then(() => {
                 navigate('/read')
             })
     }
 
-    const [startDate, setStartDate] = useState(new Date());
-  
 return (
     <>  
     <div>
@@ -52,15 +48,15 @@ return (
               />
             </Form.Group>
             <Form.Group
-              className="mb-3"
-              controlId="example.ControlDatePicker1"
+                className="mb-3 calendar1"
+                controlId="example.ControlDatePicker1"
             >
               <Form.Label id='calendar'>Due date</Form.Label>
-              <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+              <DatePicker selected={dueDate} onChange={(date) => setdueDate(date)} dateFormat="dd/MM/yyyy"/>
             </Form.Group>
             <Form.Group
-              className="mb-3"
-              controlId="example.ControlTextarea1"
+                className="mb-3"
+                controlId="example.ControlTextarea1"
             >
               <Form.Label>Description</Form.Label>
               <Form.Control as="textarea" rows={3} onChange={(e) => settaskDescription(e.target.value)}/>
@@ -71,7 +67,7 @@ return (
           <Button variant="secondary" onClick={() => navigate(-1)}>
             Close
           </Button>
-          <Button variant="primary" onClick={postData}>
+          <Button variant="outline-success" onClick={postData} type='submit'>
             Save Changes
           </Button>
         </Modal.Footer>
