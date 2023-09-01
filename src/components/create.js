@@ -13,10 +13,8 @@ import "react-datepicker/dist/react-datepicker.css";
 function Create() {   
     const navigate = useNavigate();
 
-//   const [show] = useState(false);
+  const [show] = useState(true);
 
-//   const handleClose = () => setShow(false);
-//   const handleShow = () => setShow(true);
 
   const [addNewTaskTitle, setaddNewTaskTitle] = useState('');
   // const [taskdatePicker, settaskdatePicker] = useState('');
@@ -36,7 +34,7 @@ function Create() {
     <>
       
 <div>
-      {/* <Modal show={show} onHide={() => navigate(-1)} > */}
+      <Modal show={show} onHide={() => navigate(-1)} >
         <Modal.Header closeButton>
           <Modal.Title>Add New Task</Modal.Title>
         </Modal.Header>
@@ -78,7 +76,7 @@ function Create() {
             Save Changes
           </Button>
         </Modal.Footer>
-      {/* </Modal> */}
+      </Modal>
       </div>
     </>
   );
