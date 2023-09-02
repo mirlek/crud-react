@@ -21,8 +21,8 @@ const AddTaskButton = () => {
       <Link to="modal" state={{ background: location }} >
         <Button className="button-add-tasks" onClick={handleShow} show={show}>
             Add New Task
-              <FontAwesomeIcon icon="fa-solid fa-plus" className="plus-solid" />
-            </Button>
+            <FontAwesomeIcon icon="fa-solid fa-plus" className="plus-solid" />
+        </Button>
       </Link>
       <Outlet />
     </div>
