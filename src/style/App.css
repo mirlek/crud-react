@@ -27,22 +27,15 @@
   background-color: grey !important;
   border: 1px solid grey !important;
 }
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> a0cec16c710f1dd2286d0562393537b0abc20fc8
+
 a, a:hover {
   color: transparent;
   text-decoration: none;
 }
-<<<<<<< HEAD
+
 .btn-primary:focus{
   box-shadow: none;
 }
->>>>>>> Stashed changes
-=======
->>>>>>> a0cec16c710f1dd2286d0562393537b0abc20fc8
 .plus-solid, .pen-solid, .trash-solid {
   height: 18px;
   width: 18px;
