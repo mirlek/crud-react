@@ -26,6 +26,16 @@
   background-color: grey !important;
   border: 1px solid grey !important;
 }
+<<<<<<< Updated upstream
+=======
+a, a:hover {
+  color: transparent;
+  text-decoration: none;
+}
+.btn-primary:focus{
+  box-shadow: none;
+}
+>>>>>>> Stashed changes
 .plus-solid, .pen-solid, .trash-solid {
   height: 24px;
   width: 24px;
