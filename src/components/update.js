@@ -20,7 +20,7 @@ function Update() {
         axios.put(`https://64ef1ed7219b3e2873c3f9ad.mockapi.io/todoData/${id}`, {
                 addNewTaskTitle,
                 taskDescription,
-                dueDate
+                // dueDate
         }).then(() => {
             navigate('/read')
         })
@@ -31,7 +31,7 @@ function Update() {
     useEffect(() => {
         setID(localStorage.getItem('ID'))
         setaddNewTaskTitle(localStorage.getItem('Your task'));
-        setdueDate(localStorage.getItem('Due Date'));
+        // setdueDate(localStorage.getItem('Due Date'));
         settaskDescription(localStorage.getItem('To-Do'));
 }, []);
   
