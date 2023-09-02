@@ -20,10 +20,11 @@ function Read() {
 
     const setData = (data) => {
         console.log(data);
-        let { id, addNewTaskTitle, taskDescription } = data;
+        let { id, addNewTaskTitle, taskDescription, dueDate } = data;
         localStorage.setItem('ID', id);
         localStorage.setItem('Your Task', addNewTaskTitle);
-        localStorage.setItem('To-Do', taskDescription);
+        localStorage.setItem('Due Date', dueDate);
+        localStorage.setItem('To-Do', taskDescription);       
     }
 
     const onDelete = (id) => {
@@ -46,15 +47,15 @@ function Read() {
         return (
             <div className='toDoListCard'>
                 <Card.Title>{data.addNewTaskTitle}</Card.Title>
+                <Card.Text >{data.dueDate}</Card.Text>
                 <Card.Text>{data.taskDescription}</Card.Text>
-               
                 <div className='change-buttons'>
                     <Link to='/update'>
-                        <Button variant="primary" className='button-edit' onClick={() => setData(data)}>
+                        <Button variant="outline-success" className='button-edit' onClick={() => setData(data)}>
                             <FontAwesomeIcon icon="fa-solid fa-pen" className="pen-solid" />
                         </Button>
                     </Link>     
-                    <Button variant="primary" className='button-delete'onClick={() => onDelete(data.id)}>
+                    <Button variant="outline-secondary" className='button-delete' onClick={() => onDelete(data.id)}>
                         <FontAwesomeIcon icon="fa-solid fa-trash" className="trash-solid" alt="trash-solid" />   
                     </Button>
                 </div>     

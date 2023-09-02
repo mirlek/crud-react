@@ -16,21 +16,20 @@ function App() {
             <p>
               To-DO List
             </p>
-            
             <Routes location={background || location}>
-            <Route path="/" element={<AddTaskButton />}>
-          <Route path="modal" element={<Create />} />
-        </Route>
-            <Route path='/read' element={<Read />} />
-            <Route path='/update' element={<Update />} />
-            </Routes>
-            {background && (
-        <Routes>
-          <Route path="modal" element={<Create />} />
-        </Routes>
+              <Route path="/" element={<AddTaskButton />}>
+              <Route path='/read' element={<Read />} />
+                <Route path="modal" element={<Create />} />
+              </Route>
+              {/* <Route path='/read' element={<Read />} /> */}
+              <Route path='/update' element={<Update />} />
+              </Routes>
+                {background && (
+              <Routes>
+                <Route path="modal" element={<Create />} />
+              </Routes>
       )}
           </div>
-          
       </div>
   );
 }
