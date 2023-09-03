@@ -4,4 +4,3 @@ I haven't added the description, yet, Ilya. KEK
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-

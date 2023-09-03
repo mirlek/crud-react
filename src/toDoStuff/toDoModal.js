@@ -10,8 +10,6 @@
 
 // import axios from 'axios';
 
-
-
 // function Example() {
 //   const [show, setShow] = useState(false);
 
@@ -33,8 +31,8 @@
 //         </Modal.Header>
 //         <Modal.Body>
 //           <Form>
-//             <Form.Group 
-//               className="mb-3" 
+//             <Form.Group
+//               className="mb-3"
 //               controlId="example.ControlInput1"
 //               >
 //               <Form.Label>Task Title</Form.Label>
