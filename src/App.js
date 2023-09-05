@@ -41,8 +41,8 @@ function App() {
         taskDescription,
         dueDate,
       })
-      .then((response) => {
-        console.log(response);
+      .then(() => {
+        getData();
       });
   };
 
@@ -55,8 +55,8 @@ function App() {
         taskDescription,
         dueDate,
       })
-      .then((response) => {
-        console.log(response);
+      .then(() => {
+        getData();
       });
   };
 
@@ -154,7 +154,7 @@ function App() {
                 <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>
-                <Button variant="outline-success" onClick={postData} type="submit">
+                <Button variant="outline-success" onClick={postData} type="submit"> 
                   Save Changes
                 </Button>
               </Modal.Footer>
