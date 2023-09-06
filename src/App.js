@@ -1,6 +1,3 @@
-// import Create from "./components/create";
-// import Read from "./components/read";
-// import Update from "./components/update";
 import "./style/App.css";
 
 import React, { useState, useEffect } from "react";
@@ -17,8 +14,6 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 library.add(fas);
 
 function App() {
-  // const location = useLocation();
-  // const background = location.state && location.state.background;
 
   const [show, setShow] = useState(false);
 
@@ -211,18 +206,6 @@ function App() {
         </div>
       </div>
     </div>
-    // <Routes location={background || location}>
-    //   <Route path="/" element={<AddTaskButton />}>
-    //     <Route path="modal" element={<Create />} />
-    //   </Route>
-    //   {/* <Route path='/read' element={<Read />} /> */}
-    //   <Route path="/update" element={<Update />} />
-    // </Routes>
-    // {background && (
-    //   <Routes>
-    //     <Route path="modal" element={<Create />} />
-    //   </Routes>
-    // )}
   );
 }
 
