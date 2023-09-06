@@ -136,9 +136,10 @@ function App() {
                     <Form.Label id="calendar">Due date</Form.Label>
                     <DatePicker
                       selected={parseISO(dueDate)}
-                      onChange={(date) => setDueDate(date)}
+                      onChange={(date) => setDueDate(date.toISOString().split("T")[0])}
                       dateFormat={'dd/MM/yyyy'}
                     />
+                    
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="example.ControlTextarea1">
                     <Form.Label>Description</Form.Label>
