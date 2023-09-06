@@ -3,14 +3,14 @@
 // import Update from "./components/update";
 import "./style/App.css";
 
-import { React, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import axios from "axios";
 import { Modal, Button, Form, Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
+import {parseISO} from 'date-fns';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
@@ -32,7 +32,7 @@ function App() {
 
   const [addNewTaskTitle, setaddNewTaskTitle] = useState("");
   const [taskDescription, settaskDescription] = useState("");
-  const [dueDate, setdueDate] = useState(new Date());
+  const [dueDate, setDueDate] = useState(new Date());
 
   const postData = () => {
     axios
@@ -48,24 +48,24 @@ function App() {
 
   //// from Update
 
-  const updateAPIData = () => {
-    axios
-      .put(`https://64ef1ed7219b3e2873c3f9ad.mockapi.io/todoData/${id}`, {
-        addNewTaskTitle,
-        taskDescription,
-        dueDate,
-      })
-      .then(() => {
-        getData();
-      });
-  };
+  // const updateAPIData = () => {
+  //   axios
+  //     .put(`https://64ef1ed7219b3e2873c3f9ad.mockapi.io/todoData/${id}`, {
+  //       addNewTaskTitle,
+  //       taskDescription,
+  //       dueDate,
+  //     })
+  //     .then(() => {
+  //       getData();
+  //     });
+  // };
 
   const [id, setID] = useState(null);
 
   useEffect(() => {
     setID(localStorage.getItem("ID"));
     setaddNewTaskTitle(localStorage.getItem("Your task"));
-    setdueDate(localStorage.getItem("Due Date"));
+    setDueDate(localStorage.getItem("Due Date"));
     settaskDescription(localStorage.getItem("To-Do"));
   }, []);
 
@@ -134,11 +134,11 @@ function App() {
                     controlId="example.ControlDatePicker1"
                   >
                     <Form.Label id="calendar">Due date</Form.Label>
-                    {/* <DatePicker
-                      selected={dueDate}
-                      onChange={(date) => setdueDate(date)}
-                      dateFormat="dd/MM/yyyy"
-                    /> */}
+                    <DatePicker
+                      selected={parseISO(dueDate)}
+                      onChange={(date) => setDueDate(date)}
+                      dateFormat={'dd/MM/yyyy'}
+                    />
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="example.ControlTextarea1">
                     <Form.Label>Description</Form.Label>
@@ -154,7 +154,13 @@ function App() {
                 <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>
-                <Button variant="outline-success" onClick={postData} type="submit"> 
+                <Button 
+                variant="outline-success" 
+                onClick={() => {
+                  postData();
+                  handleClose()
+                }} 
+                type="submit"> 
                   Save Changes
                 </Button>
               </Modal.Footer>
@@ -174,7 +180,7 @@ function App() {
                           <Button
                             variant="outline-success"
                             className="button-edit"
-                            onClick={() => setData(data)}
+                            onClick={() => {setData(data); handleShow()}}
                           >
                             <FontAwesomeIcon
                               icon="fa-solid fa-pen"
