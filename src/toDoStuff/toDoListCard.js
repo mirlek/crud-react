@@ -1,4 +1,3 @@
-
 // import { Link } from "react-router-dom";
 // import { Card, Button } from "react-bootstrap";
 // import "bootstrap/dist/css/bootstrap.css";
@@ -6,7 +5,6 @@
 // import { library } from "@fortawesome/fontawesome-svg-core";
 // import { fas } from "@fortawesome/free-solid-svg-icons";
 // library.add(fas);
-
 
 //   return (
 //     <div className="cardsStock">
