@@ -36,29 +36,6 @@ function App() {
       });
   };
 
-  //// from Update
-
-  // const updateAPIData = () => {
-  //   axios
-  //     .put(`https://64ef1ed7219b3e2873c3f9ad.mockapi.io/todoData/${id}`, {
-  //       addNewTaskTitle,
-  //       taskDescription,
-  //       dueDate,
-  //     })
-  //     .then(() => {
-  //       getData();
-  //     });
-  // };
-
-  const [id, setID] = useState(null);
-
-  useEffect(() => {
-    setID(localStorage.getItem("ID"));
-    setaddNewTaskTitle(localStorage.getItem("Your task"));
-    setDueDate(localStorage.getItem("Due Date"));
-    settaskDescription(localStorage.getItem("To-Do"));
-  }, []);
-
   //// from read
 
   const [APIData, setAPIData] = useState([]);
@@ -93,6 +70,29 @@ function App() {
         setAPIData(getData.data);
       });
   };
+
+    //// from Update
+
+    const updateAPIData = () => {
+      axios
+        .put(`https://64ef1ed7219b3e2873c3f9ad.mockapi.io/todoData/${id}`, {
+          addNewTaskTitle,
+          taskDescription,
+          dueDate,
+        })
+        .then(() => {
+          getData();
+        });
+    };
+  
+    const [id, setID] = useState(null);
+  
+    useEffect(() => {
+      setID(localStorage.getItem("ID"));
+      setaddNewTaskTitle(localStorage.getItem("Your task"));
+      setDueDate(localStorage.getItem("Due Date"));
+      settaskDescription(localStorage.getItem("To-Do"));
+    }, []);
 
   return (
     <div className="App">
@@ -179,13 +179,70 @@ function App() {
                         onClick={() => {
                           setData(data);
                           handleShow();
-                        }}
+                        }} 
                       >
                         <FontAwesomeIcon
                           icon="fa-solid fa-pen"
                           className="pen-solid"
                         />
                       </Button>
+                      {/* <Modal show={show} onHide={handleClose}>
+                          <Modal.Header closeButton>
+                            <Modal.Title>Edit Task</Modal.Title>
+                          </Modal.Header>
+                          <Modal.Body>
+                            <Form>
+                              <Form.Group className="mb-3" controlId="example.ControlInputEdit2">
+                                <Form.Label> New Task Title</Form.Label>
+                                <Form.Control
+                                  type="text"
+                                  placeholder="Your change is"
+                                  autoFocus
+                                  onChange={(e) => setaddNewTaskTitle(e.target.value)}
+                                  value={addNewTaskTitle}
+                                />
+                              </Form.Group>
+                              <Form.Group
+                                className="mb-3 calendar1"
+                                controlId="example.ControlDatePickerEdit2"
+                              >
+                                <Form.Label id="calendar">New Due date</Form.Label>
+                                <DatePicker
+                                  selected={parseISO(dueDate)}
+                                  onChange={(date) =>
+                                    setDueDate(date.toISOString().split("T")[0])
+                                  }
+                                  dateFormat={"dd/MM/yyyy"}
+                                  value={dueDate}
+                                />
+                              </Form.Group>
+                              <Form.Group
+                                className="mb-3"
+                                controlId="example.ControlTextareaEdit2"
+                              >
+                                <Form.Label> New Description</Form.Label>
+                                <Form.Control
+                                  as="textarea"
+                                  rows={3}
+                                  onChange={(e) => settaskDescription(e.target.value)}
+                                  value={taskDescription}
+                                />
+                              </Form.Group>
+                            </Form>
+                          </Modal.Body>
+                          <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}>
+                              Close
+                            </Button>
+                            <Button
+                              variant="outline-success"
+                              onClick={updateAPIData}
+                              type="submit"
+                            >
+                              Save Changes
+                            </Button>
+                          </Modal.Footer>
+                        </Modal> */}
                       <Button
                         variant="outline-secondary"
                         className="button-delete"
