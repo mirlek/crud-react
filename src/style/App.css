@@ -6,20 +6,24 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: black;
-  
 }
 
-.todo-menu{
+.todo-menu {
   padding: 32px;
   min-height: 550px;
   width: 300px;
   max-height: fit-content;
   margin-top: 100px;
   border: 1px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  box-shadow:
+    rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px,
+    rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px,
+    rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.button-add-tasks{
+.button-add-tasks {
   display: flex !important;
   width: 100%;
   align-items: center !important;
@@ -27,48 +31,56 @@
   background-color: grey !important;
   border: 1px solid grey !important;
 }
-a, a:hover {
-  color: transparent;
-  text-decoration: none;
+.btn:focus {
+  box-shadow: none !important;
 }
-.plus-solid, .pen-solid, .trash-solid {
+a,
+a:hover {
+  color: transparent !important;
+  text-decoration: none !important;
+}
+.plus-solid,
+.pen-solid,
+.trash-solid {
   height: 18px;
   width: 18px;
 }
-.modal-header, .modal-footer{
+.modal-header,
+.modal-footer {
   border: 0px;
 }
-.modal-footer{
+.modal-footer {
   padding-top: 0px;
 }
-.card{
-  border: 0px;
+.card {
+  border: 0px !important;
 }
-.card-body{
-  padding: 0px;
+.card-body {
+  padding: 0px !important;
 }
-.card-text{
+.card-text {
   font-size: 16px;
 }
-.toDoListCard{
+.toDoListCard {
   margin: 24px 0px 24px 0px;
   border: 2px solid #e0e4e9;
   border-radius: 4%;
-  box-shadow: rgba(15, 113, 21, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  box-shadow:
+    rgba(15, 113, 21, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   padding: 24px;
   background-color: #e0e4e9;
 }
 
-
-.change-buttons{
+.change-buttons {
   display: flex;
   align-items: flex-end;
   justify-content: space-evenly;
 }
 
-.calendar1{
+.calendar1 {
   margin-top: 32px;
 }
-#calendar{
+#calendar {
   margin-right: 32px;
 }
