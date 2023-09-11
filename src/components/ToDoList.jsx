@@ -54,9 +54,9 @@ const ToDoList = ({ refresh, setRefresh, showModal, setShowModal }) => {
     <div className="cardsStock">
       <Card>
         <Card.Body>
-          {todoList.map((data, index) => (
+          {todoList.map((data) => (
             <ToDo
-              key={index}
+              key={data.id}
               update={() => update(data)}
               data={data}
               onDelete={onDelete}

@@ -6,7 +6,7 @@ import "./style/App.css";
 
 const App = () => {
   const [showModal, setShowModal] = useState(false);
-  const [refresh, setRefresh] = useState(false);
+  const [refresh, setRefresh] = useState(true);
   return (
     <div className="App">
       <PageLayout>
