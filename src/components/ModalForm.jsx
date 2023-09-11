@@ -1,38 +1,40 @@
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
-import React, {useState} from "react";
-import {Button, Form, Modal} from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Form, Modal } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {APIHost} from "../appConfig";
+import { APIHost } from "../appConfig";
 import "../style/App.css";
 
-const ModalForm = ({showModal, onClose, updatedItem}) => {
-   const {
-       addNewTaskTitle: addNewTaskTitleBase,
-       taskDescription: taskDescriptionBase,
-       dueDate: dueDateBase
-   } = updatedItem ?? {addNewTaskTitle: '', taskDescription: '', dueDate: new Date()}
+const ModalForm = ({ showModal, onClose, updatedItem }) => {
+  const {
+    addNewTaskTitle: addNewTaskTitleBase,
+    taskDescription: taskDescriptionBase,
+    dueDate: dueDateBase,
+  } = updatedItem ?? {
+    addNewTaskTitle: "",
+    taskDescription: "",
+    dueDate: new Date(),
+  };
 
   const [addNewTaskTitle, setAddNewTaskTitle] = useState(addNewTaskTitleBase);
   const [taskDescription, setTaskDescription] = useState(taskDescriptionBase);
   const [dueDate, setDueDate] = useState(dueDateBase);
 
   const postData = () => {
-    if(updatedItem) {
-      axios
-          .put(`${APIHost}/todoData`, {
-            addNewTaskTitle,
-            taskDescription,
-            dueDate,
-          })
+    if (updatedItem) {
+      axios.put(`${APIHost}/todoData`, {
+        addNewTaskTitle,
+        taskDescription,
+        dueDate,
+      });
     } else {
-      axios
-          .post(`${APIHost}/todoData`, {
-            addNewTaskTitle,
-            taskDescription,
-            dueDate,
-          })
+      axios.post(`${APIHost}/todoData`, {
+        addNewTaskTitle,
+        taskDescription,
+        dueDate,
+      });
     }
   };
 
@@ -40,8 +42,9 @@ const ModalForm = ({showModal, onClose, updatedItem}) => {
     <div className="modal">
       <Modal show={showModal} onHide={onClose}>
         <Modal.Header closeButton>
-          <Modal.Title>{
-              updatedItem ? 'Update task' : 'Add New Task'}</Modal.Title>
+          <Modal.Title>
+            {updatedItem ? "Update task" : "Add New Task"}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -89,12 +92,12 @@ const ModalForm = ({showModal, onClose, updatedItem}) => {
             }}
             type="submit"
           >
-              {updatedItem ? 'Update Task' : 'Save Changes'}
+            {updatedItem ? "Update Task" : "Save Changes"}
           </Button>
         </Modal.Footer>
       </Modal>
     </div>
   );
-}
+};
 
 export default ModalForm;
