@@ -1,15 +1,12 @@
 import "../style/App.css";
-import ToDoList from "./ToDoList";
-import AddButton from "./AddButton";
 
-function PageLayout() {
+const PageLayout = ({ children }) => {
   return (
     <div className="todo-menu">
       <p>To-DO List</p>
-      <AddButton />
-      <ToDoList />
+      {children}
     </div>
   );
-}
+};
 
 export default PageLayout;
