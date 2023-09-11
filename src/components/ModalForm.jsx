@@ -1,38 +1,47 @@
-import React, { useState } from "react";
 import axios from "axios";
-import "../style/App.css";
-import { Modal, Button, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
+import React, {useState} from "react";
+import {Button, Form, Modal} from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import ToDoList from "./ToDoList";
+import {APIHost} from "../appConfig";
+import "../style/App.css";
 
-function ModalForm() {
-  const [show, setShow] = useState(true);
+const ModalForm = ({showModal, onClose, updatedItem}) => {
+   const {
+       addNewTaskTitle: addNewTaskTitleBase,
+       taskDescription: taskDescriptionBase,
+       dueDate: dueDateBase
+   } = updatedItem ?? {addNewTaskTitle: '', taskDescription: '', dueDate: new Date()}
 
-  const handleClose = () => setShow(false);
-
-  const [addNewTaskTitle, setaddNewTaskTitle] = useState("");
-  const [taskDescription, settaskDescription] = useState("");
-  const [dueDate, setDueDate] = useState(new Date());
+  const [addNewTaskTitle, setAddNewTaskTitle] = useState(addNewTaskTitleBase);
+  const [taskDescription, setTaskDescription] = useState(taskDescriptionBase);
+  const [dueDate, setDueDate] = useState(dueDateBase);
 
   const postData = () => {
-    axios
-      .post(`https://64ef1ed7219b3e2873c3f9ad.mockapi.io/todoData`, {
-        addNewTaskTitle,
-        taskDescription,
-        dueDate,
-      })
-      .then(() => {
-        <ToDoList />;
-      });
+    if(updatedItem) {
+      axios
+          .put(`${APIHost}/todoData`, {
+            addNewTaskTitle,
+            taskDescription,
+            dueDate,
+          })
+    } else {
+      axios
+          .post(`${APIHost}/todoData`, {
+            addNewTaskTitle,
+            taskDescription,
+            dueDate,
+          })
+    }
   };
 
   return (
     <div className="modal">
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={showModal} onHide={onClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add New Task</Modal.Title>
+          <Modal.Title>{
+              updatedItem ? 'Update task' : 'Add New Task'}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -42,7 +51,7 @@ function ModalForm() {
                 type="text"
                 placeholder="Add what's important to do"
                 autoFocus
-                onChange={(e) => setaddNewTaskTitle(e.target.value)}
+                onChange={(e) => setAddNewTaskTitle(e.target.value)}
                 value={addNewTaskTitle}
               />
             </Form.Group>
@@ -62,25 +71,25 @@ function ModalForm() {
               <Form.Control
                 as="textarea"
                 rows={3}
-                onChange={(e) => settaskDescription(e.target.value)}
+                onChange={(e) => setTaskDescription(e.target.value)}
                 value={taskDescription}
               />
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={onClose}>
             Close
           </Button>
           <Button
             variant="outline-success"
             onClick={() => {
               postData();
-              handleClose();
+              onClose();
             }}
             type="submit"
           >
-            Save Changes
+              {updatedItem ? 'Update Task' : 'Save Changes'}
           </Button>
         </Modal.Footer>
       </Modal>
