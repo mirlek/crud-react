@@ -2,14 +2,21 @@ import "../style/App.css";
 import { APIHost } from "../appConfig";
 import ModalForm from "./ModalForm";
 import ToDo from "./ToDo";
-import { useState, useEffect } from "react";
+import { useState, useEffect, SetStateAction } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
 import { Card } from "react-bootstrap";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-const ToDoList = ({ refresh, setRefresh, showModal, setShowModal }) => {
+interface ToDoListParams {
+  refresh: boolean,
+  setRefresh: (refresh:boolean) => void,
+  showModal: boolean,
+  setShowModal: (showModal:boolean) => void
+}
+
+const ToDoList = ({ refresh, setRefresh, showModal, setShowModal }: ToDoListParams) => {
   const [todoList, setTodoList] = useState([]);
 
   useEffect(() => {
@@ -45,7 +52,7 @@ const ToDoList = ({ refresh, setRefresh, showModal, setShowModal }) => {
   };
 
   const [updatedItem, setUpdatedItem] = useState();
-  const update = (item) => {
+  const update = (item: SetStateAction<undefined>) => {
     setShowModal(true);
     setUpdatedItem(item);
   };

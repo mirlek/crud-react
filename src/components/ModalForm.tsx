@@ -7,7 +7,15 @@ import "react-datepicker/dist/react-datepicker.css";
 import {APIHost} from "../appConfig";
 import "../style/App.css";
 
-const ModalForm = ({showModal, onClose, updatedItem}) => {
+interface ModalParams {
+    updatedItem: (item:string) => string ,
+    showModal: boolean,
+    onClose: boolean,
+    onHide?: (() => void) | undefined,
+    onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined
+  }
+
+const ModalForm = ({showModal, onClose, updatedItem}: ModalParams) => {
 
     const [addNewTaskTitle, setAddNewTaskTitle] = useState('');
     const [taskDescription, setTaskDescription] = useState('');
@@ -46,7 +54,7 @@ const ModalForm = ({showModal, onClose, updatedItem}) => {
             <Modal show={showModal} onHide={onClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        {updatedItem ? "Update task" : "Add New Task"}
+                        {updatedItem() ? "Update task" : "Add New Task"}
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -95,7 +103,7 @@ const ModalForm = ({showModal, onClose, updatedItem}) => {
                         }}
                         type="submit"
                     >
-                        {updatedItem ? "Update Task" : "Save Changes"}
+                        {updatedItem() ? "Update Task" : "Save Changes"}
                     </Button>
                 </Modal.Footer>
             </Modal>
