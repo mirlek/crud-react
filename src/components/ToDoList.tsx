@@ -10,9 +10,9 @@ import { Card } from "react-bootstrap";
 import "react-datepicker/dist/react-datepicker.css";
 
 interface ToDoListParams {
-  refresh: boolean,
+  refresh?: () => void,
   setRefresh: (refresh:boolean) => void,
-  showModal: boolean,
+  showModal?: () => void,
   setShowModal: (showModal:boolean) => void
 }
 
@@ -34,7 +34,7 @@ const ToDoList = ({ refresh, setRefresh, showModal, setShowModal }: ToDoListPara
     }
   }, [refresh, setRefresh]);
 
-  const onDelete = (id) => {
+  const onDelete = (id: any) => {
     axios
       .delete(`${APIHost}/todoData/${id}`)
       .then(() => {
@@ -51,7 +51,7 @@ const ToDoList = ({ refresh, setRefresh, showModal, setShowModal }: ToDoListPara
       .catch((error) => console.error(error));
   };
 
-  const [updatedItem, setUpdatedItem] = useState();
+  const [updatedItem, setUpdatedItem] = useState<undefined>();
   const update = (item: SetStateAction<undefined>) => {
     setShowModal(true);
     setUpdatedItem(item);

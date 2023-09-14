@@ -7,18 +7,18 @@ import "react-datepicker/dist/react-datepicker.css";
 import {APIHost} from "../appConfig";
 import "../style/App.css";
 
-interface ModalParams {
-    updatedItem: (item:string) => string ,
-    showModal: boolean,
-    onClose: boolean,
-    onHide?: (() => void) | undefined,
-    onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined
+export interface ModalParams {
+    updatedItem?: any
+    showModal?: () => void
+    onClose?: () => void
+    onHide?: () => void
+    onClick?: () => void
   }
 
 const ModalForm = ({showModal, onClose, updatedItem}: ModalParams) => {
 
-    const [addNewTaskTitle, setAddNewTaskTitle] = useState('');
-    const [taskDescription, setTaskDescription] = useState('');
+    const [addNewTaskTitle, setAddNewTaskTitle] = useState<string>('');
+    const [taskDescription, setTaskDescription] = useState<string>('');
     const [dueDate, setDueDate] = useState(new Date());
 
     useEffect(() => {

@@ -11,10 +11,10 @@ import { IconButton } from "./IconButton";
 
 library.add(fas);
 
-interface ToDoParams {
-  update: boolean,
-  onDelete: true,
-  data: string,
+export interface ToDoParams {
+  update: () => void,
+  onDelete?: () => void,
+  data: any,
 }
 
 const ToDo = ({ data, update, onDelete }:ToDoParams) => (
