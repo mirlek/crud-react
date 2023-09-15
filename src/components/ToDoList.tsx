@@ -2,15 +2,22 @@ import "../style/App.css";
 import { APIHost } from "../appConfig";
 import ModalForm from "./ModalForm";
 import ToDo from "./ToDo";
-import { useState, useEffect } from "react";
+import { useState, useEffect, SetStateAction } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
 import { Card } from "react-bootstrap";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-const ToDoList = ({ refresh, setRefresh, showModal, setShowModal }) => {
-  const [todoList, setTodoList] = useState([]);
+interface ToDoListParams {
+  refresh: boolean,
+  setRefresh: (refresh:boolean) => void,
+  showModal?: boolean,
+  setShowModal: (showModal:boolean) => void
+}
+
+const ToDoList = ({ refresh, setRefresh, showModal, setShowModal }: ToDoListParams) => {
+  const [todoList, setTodoList] = useState<any[]>([]);
 
   useEffect(() => {
     if (refresh) {
@@ -27,7 +34,7 @@ const ToDoList = ({ refresh, setRefresh, showModal, setShowModal }) => {
     }
   }, [refresh, setRefresh]);
 
-  const onDelete = (id) => {
+  const onDelete = (id: string) => {
     axios
       .delete(`${APIHost}/todoData/${id}`)
       .then(() => {
@@ -44,8 +51,8 @@ const ToDoList = ({ refresh, setRefresh, showModal, setShowModal }) => {
       .catch((error) => console.error(error));
   };
 
-  const [updatedItem, setUpdatedItem] = useState();
-  const update = (item) => {
+  const [updatedItem, setUpdatedItem] = useState<any>('');
+  const update = (item: SetStateAction<any>) => {
     setShowModal(true);
     setUpdatedItem(item);
   };
@@ -71,8 +78,9 @@ const ToDoList = ({ refresh, setRefresh, showModal, setShowModal }) => {
           setShowModal(false);
           setRefresh(true);
           setUpdatedItem(undefined);
-        }}
-      />
+        } } onClick={function (): void {
+          throw new Error("Function not implemented.");
+        } }      />
     </div>
   );
 };
