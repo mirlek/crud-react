@@ -13,7 +13,7 @@ library.add(fas);
 
 export interface ToDoParams {
   update: () => void,
-  onDelete?: () => void,
+  onDelete: (id:string) => void,
   data: any,
 }
 

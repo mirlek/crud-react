@@ -1,6 +1,6 @@
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {Button, Form, Modal} from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -9,10 +9,10 @@ import "../style/App.css";
 
 export interface ModalParams {
     updatedItem?: any
-    showModal?: () => void
-    onClose?: () => void
+    showModal?: boolean
+    onClose: () => void
     onHide?: () => void
-    onClick?: () => void
+    onClick: () => void
   }
 
 const ModalForm = ({showModal, onClose, updatedItem}: ModalParams) => {
@@ -76,7 +76,7 @@ const ModalForm = ({showModal, onClose, updatedItem}: ModalParams) => {
                             <Form.Label id="calendar">Due date</Form.Label>
                             <DatePicker
                                 selected={dueDate}
-                                onChange={(date) => setDueDate(date)}
+                                onChange={date => date && setDueDate(date)}
                                 dateFormat={"dd/MM/yyyy"}
                             />
                         </Form.Group>
